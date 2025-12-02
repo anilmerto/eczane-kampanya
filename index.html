@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.2">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    span.s1 {font: 12.0px 'Apple Color Emoji'}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="tr"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Saha Takip&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/lucide@latest"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body { -webkit-tap-highlight-color: transparent; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.transition-height { transition: max-height 0.3s ease-in-out, padding 0.3s ease; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="bg-slate-50 text-slate-800 font-sans pb-24"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Header --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="bg-white shadow-md sticky top-0 z-50 border-b border-slate-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-2xl mx-auto p-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-between items-center mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h1 class="text-xl font-bold text-slate-800 flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;i data-lucide="pie-chart" class="w-6 h-6 text-blue-600"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Saha Takip</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;span class="text-xs text-slate-500"&gt;Toplam 41 Eczane&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col items-end gap-0.5"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center gap-1.5 text-green-600 bg-green-50 px-2 py-0.5 rounded-md border border-green-100"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span class="text-sm font-bold"&gt;₺&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span id="total-amount" class="text-lg font-bold tracking-tight"&gt;0&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-baseline gap-2 mt-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span id="visit-count" class="text-[10px] text-slate-400 font-medium tracking-wide"&gt;0 / 41 Ziyaret&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span id="visit-percentage" class="text-base font-black text-blue-600"&gt;%0&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Progress Bar --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div id="progress-bar" class="bg-blue-600 h-3 rounded-full transition-all duration-500 ease-out" style="width: 0%"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Main Content --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="app-container" class="max-w-2xl mx-auto p-4 space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;!-- Eczane listesi buraya JS ile doldurulacak --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Footer --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-slate-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-2xl mx-auto flex gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button onclick="copyReport()" class="flex-1 bg-slate-800 text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 active:bg-slate-900 shadow-md"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;i data-lucide="clipboard-copy" class="w-5 h-5"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>Raporu Kopyala</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button onclick="confirmReset()" class="bg-red-50 text-red-600 px-4 rounded-lg font-bold border border-red-100 active:bg-red-100 flex items-center justify-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;i data-lucide="refresh-ccw" class="w-5 h-5"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Veri Seti</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const RAW_DATA = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001156580", name: "FATİH ECZANESİ", region: "ORDU MERKEZ -1" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001203062", name: "ŞİMŞEK ECZANESİ", region: "ORDU MERKEZ -1" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001165636", name: "KAYAHAN ECZANESİ", region: "ORDU MERKEZ -1" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001154135", name: "ERGÜL ECZANESİ", region: "ORDU MERKEZ -1" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001554102", name: "ALTINORDU ECZANESİ", region: "ORDU MERKEZ -1" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001428342", name: "DOĞA ECZANESİ", region: "ORDU MERKEZ -1" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001627868", name: "GÜNEŞ ECZANESİ", region: "ORDU MERKEZ -1" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001148165", name: "NAZ ECZANESİ", region: "ORDU MERKEZ -2" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001150304", name: "ORDU ECZANESİ", region: "ORDU MERKEZ -2" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001141944", name: "KOÇYİĞİT ECZANESİ", region: "ORDU MERKEZ -2" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001153336", name: "DURU ECZANESİ", region: "ORDU MERKEZ -3" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001420681", name: "ONUR ECZANESİ", region: "ORDU MERKEZ -3" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001494163", name: "ZEYNEP ECZANESİ", region: "ORDU MERKEZ -3" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001570485", name: "FIRAT ECZANESİ", region: "ORDU MERKEZ -3" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001563258", name: "MERT GERÇEKER ECZ.", region: "ORDU MERKEZ -3" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001632466", name: "TUGCAN ECZANESI", region: "ORDU MERKEZ -3" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001679072", name: "NİSAN ECZANESİ", region: "ORDU MERKEZ -3" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001648450", name: "AŞKAN ECZANESİ", region: "ORDU MERKEZ -3" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001141746", name: "ALTAŞ ECZANESİ", region: "ORDU MERKEZ -3" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001636570", name: "ÇÖREK OTU ECZANESİ", region: "ORDU FATSA" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001277230", name: "MERKEZ ECZANESİ", region: "ORDU FATSA" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001252817", name: "AKAR ECZANESİ", region: "ORDU FATSA" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001389414", name: "BESTE ECZANESİ", region: "ORDU FATSA" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001490844", name: "FATSA ECZANESİ", region: "ORDU FATSA" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001277308", name: "NOKTA ECZANESİ", region: "ORDU FATSA" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001417810", name: "ÇAKIROĞLU ECZANESİ", region: "ORDU UNYE" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001232352", name: "TELCİOĞLU ECZANESİ", region: "ORDU UNYE" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001150144", name: "ORAL ECZANESİ", region: "ORDU UNYE" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001657612", name: "NEFES ECZANESİ", region: "ORDU UNYE" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001163564", name: "KARADENİZ ECZANESİ", region: "ORDU DOGU ILCELER" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001163717", name: "KARADENİZ ECZANESİ (2)", region: "ORDU DOGU ILCELER" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001460397", name: "IRMAK ECZANESİ", region: "ORDU DOGU ILCELER" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001713677", name: "YENİ MEDRESEÖNÜ ECZ.", region: "ORDU DOGU ILCELER" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001213276", name: "MESUDİYE ECZANESİ", region: "ORDU DOGU ILCELER" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001726905", name: "DEVA ECZANESİ", region: "ORDU DOGU ILCELER" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001202294", name: "ŞAHİN ECZANESİ", region: "ORDU DOGU ILCELER" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001233144", name: "ULUBEY ECZANESİ", region: "ORDU DOGU ILCELER" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001709571", name: "LOTUS ECZANESİ", region: "ORDU DOGU ILCELER" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001753178", name: "LOTUS ECZANESİ (2)", region: "ORDU DOGU ILCELER" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001428854", name: "ÇAĞLA ECZANESİ", region: "ORDU DOGU ILCELER" },</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{ gln: "8680001157914", name: "GÜRGENTEPE ECZANESİ", region: "ORDU GUNEY ILCELER -1" }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// State Yönetimi</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let trackingData = JSON.parse(localStorage.getItem('eczaneTakipFinalGitHub')) || {};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let expandedRegions = {};</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let expandedDetails = {};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Veriyi Kaydet</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function saveData() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem('eczaneTakipFinalGitHub', JSON.stringify(trackingData));</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderApp();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Gruplama Fonksiyonu</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function getGroupedData() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const groups = {};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>RAW_DATA.forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!groups[item.region]) groups[item.region] = [];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>groups[item.region].push(item);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return groups;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Yardımcı Fonksiyonlar</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function toggleRegion(region) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>expandedRegions[region] = !expandedRegions[region];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderApp();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function toggleDetails(gln) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>expandedDetails[gln] = !expandedDetails[gln];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>renderApp();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateData(gln, field, value) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!trackingData[gln]) trackingData[gln] = {};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>trackingData[gln][field] = value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>saveData();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function toggleStatus(gln, type) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!trackingData[gln]) trackingData[gln] = { visited: false, ordered: false };</p>
+<p class="p1"><span class="Apple-converted-space">            </span>trackingData[gln][type] = !trackingData[gln][type];</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Eğer sipariş alındıysa, ziyaret edilmiş de sayılır</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (type === 'ordered' &amp;&amp; trackingData[gln].ordered &amp;&amp; !trackingData[gln].visited) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>trackingData[gln].visited = true;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>saveData();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function toggleFollowUp(gln, type) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!trackingData[gln]) trackingData[gln] = {};</p>
+<p class="p1"><span class="Apple-converted-space">            </span>trackingData[gln].followUp = trackingData[gln].followUp === type ? '' : type;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>saveData();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function confirmReset() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if(confirm("Tüm ziyaret, sipariş ve notlar silinecek. Emin misin?")) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>localStorage.removeItem('eczaneTakipFinalGitHub');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>trackingData = {};</p>
+<p class="p1"><span class="Apple-converted-space">                </span>location.reload();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function copyReport() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let visitedCount = 0, orderedCount = 0, totalAmount = 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const totalCount = RAW_DATA.length;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>Object.values(trackingData).forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (item.visited) visitedCount++;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (item.ordered) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>orderedCount++;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>totalAmount += parseFloat(item.amount) || 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const visitPercentage = Math.round((visitedCount / totalCount) * 100);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let report = `<span class="s1">📅</span> *Günlük Saha Raporu*\n\n`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>report += `<span class="s1">📈</span> Ziyaret: %${visitPercentage} (${visitedCount}/${totalCount})\n`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>report += `<span class="s1">📦</span> Sipariş Sayısı: ${orderedCount}\n`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>report += `<span class="s1">💰</span> Ciro: ${totalAmount.toLocaleString('tr-TR')} TL\n\n`;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>report += `*Sipariş Alınanlar:*\n`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let orderLines = [];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>RAW_DATA.forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const data = trackingData[item.gln];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (data?.ordered) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let line = `- ${item.name}`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (data.amount) line += ` (${parseFloat(data.amount).toLocaleString('tr-TR')} TL)`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (data.note) line += ` | Not: ${data.note}`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>orderLines.push(line);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>report += orderLines.length &gt; 0 ? orderLines.join('\n') : "Yok\n";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>report += `\n*Takip / Durumlar:*\n`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let followUpLines = [];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>RAW_DATA.forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const data = trackingData[item.gln];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (!data?.ordered &amp;&amp; (data?.followUp || data?.note)) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>let line = `- ${item.name}`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (data.followUp === 'later') line += ` [Sonra Uğra]`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (data.followUp === 'waiting') line += ` [Dönüş Bekleniyor]`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (data.note) line += ` | Not: ${data.note}`;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>followUpLines.push(line);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>report += followUpLines.length &gt; 0 ? followUpLines.join('\n') : "Yok\n";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>navigator.clipboard.writeText(report).then(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>alert("Rapor kopyalandı!");</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Ana Render Fonksiyonu</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function renderApp() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const container = document.getElementById('app-container');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const groupedData = getGroupedData();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// İstatistik Hesapla</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let visitedCount = 0, orderedCount = 0, totalAmount = 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>Object.values(trackingData).forEach(item =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (item.visited) visitedCount++;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (item.ordered) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>orderedCount++;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>totalAmount += parseFloat(item.amount) || 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const visitPercentage = Math.round((visitedCount / RAW_DATA.length) * 100);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Header Update</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('total-amount').innerText = totalAmount.toLocaleString('tr-TR');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('visit-count').innerText = `${visitedCount} / ${RAW_DATA.length} Ziyaret`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('visit-percentage').innerText = `%${visitPercentage}`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('progress-bar').style.width = `${visitPercentage}%`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Listeyi Temizle ve Yeniden Kur</p>
+<p class="p1"><span class="Apple-converted-space">            </span>container.innerHTML = '';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (const [region, items] of Object.entries(groupedData)) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Bölge İstatistikleri</p>
+<p class="p1"><span class="Apple-converted-space">                </span>let regionVisited = 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>items.forEach(i =&gt; { if (trackingData[i.gln]?.visited) regionVisited++; });</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const isAllVisited = regionVisited === items.length &amp;&amp; items.length &gt; 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const isOpen = expandedRegions[region];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>const regionHtml = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>regionHtml.className = "bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden";</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>// Bölge Başlığı</p>
+<p class="p1"><span class="Apple-converted-space">                </span>regionHtml.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="toggleRegion('${region}')" class="w-full flex justify-between items-center p-4 transition-colors ${isAllVisited ? 'bg-green-50' : 'bg-white hover:bg-slate-50'}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="text-left"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="font-bold ${isAllVisited ? 'text-green-700' : 'text-slate-800'}"&gt;${region}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;p class="text-xs text-slate-500 mt-1"&gt;${items.length} Eczane • ${regionVisited} Ziyaret&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;i data-lucide="${isOpen ? 'chevron-up' : 'chevron-down'}" class="text-slate-400 w-5 h-5"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (isOpen) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const listContainer = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>listContainer.className = "divide-y divide-slate-100 bg-slate-50/50";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>items.forEach(pharmacy =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const data = trackingData[pharmacy.gln] || {};</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const isDetailsOpen = expandedDetails[pharmacy.gln];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Rozetler</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>let badges = '';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (!isDetailsOpen) {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>if (data.followUp === 'later') badges += `&lt;span class="bg-orange-100 text-orange-700 text-[9px] px-1.5 py-0.5 rounded font-bold ml-2"&gt;SONRA&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>if (data.followUp === 'waiting') badges += `&lt;span class="bg-purple-100 text-purple-700 text-[9px] px-1.5 py-0.5 rounded font-bold ml-2"&gt;DÖNÜŞ&lt;/span&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>// Tutar Göstergesi (Liste Kapalıyken)</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>let amountDisplay = '';</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>if (data.ordered &amp;&amp; data.amount &amp;&amp; !isDetailsOpen) {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>amountDisplay = `&lt;div class="mt-1 text-xs font-bold text-green-600"&gt;₺${parseFloat(data.amount).toLocaleString('tr-TR')}&lt;/div&gt;`;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>const itemDiv = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>itemDiv.className = "flex flex-col";</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>itemDiv.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="p-3 flex items-start justify-between gap-3 bg-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="flex-1 min-w-0 pt-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="flex items-center flex-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="font-semibold truncate ${data.visited ? 'text-slate-600' : 'text-slate-900'}"&gt;${pharmacy.name}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>${badges}</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="text-[10px] text-slate-400 font-mono"&gt;GLN: ${pharmacy.gln}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>${amountDisplay}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                </span></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="flex gap-2 shrink-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button onclick="toggleStatus('${pharmacy.gln}', 'visited')" class="flex flex-col items-center justify-center w-11 h-11 rounded-lg border transition-all active:scale-95 ${data.visited ? 'bg-green-100 border-green-200 text-green-700 shadow-inner' : 'bg-white border-slate-200 text-slate-400 shadow-sm'}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;i data-lucide="check-circle-2" class="w-5 h-5 mb-0.5"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span class="text-[8px] font-bold"&gt;GİTTİM&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/button&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button onclick="toggleStatus('${pharmacy.gln}', 'ordered')" class="flex flex-col items-center justify-center w-11 h-11 rounded-lg border transition-all active:scale-95 ${data.ordered ? 'bg-blue-100 border-blue-200 text-blue-700 shadow-inner' : 'bg-white border-slate-200 text-slate-400 shadow-sm'}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;i data-lucide="shopping-cart" class="w-4 h-4 mb-0.5"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span class="text-[8px] font-bold"&gt;SİPARİŞ&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;button onclick="toggleDetails('${pharmacy.gln}')" class="flex flex-col items-center justify-center w-8 h-11 rounded-lg border transition-all active:scale-95 ${isDetailsOpen || data.note || data.followUp ? 'bg-slate-100 border-slate-300 text-slate-700' : 'bg-white border-slate-200 text-slate-400'}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;i data-lucide="file-text" class="w-4 h-4"&gt;&lt;/i&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="bg-slate-50 px-3 border-b border-slate-100 overflow-hidden transition-height ${data.ordered || isDetailsOpen ? 'pb-2 max-h-96' : 'max-h-0 border-0'}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>${data.ordered ? `</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="pt-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-bold text-sm"&gt;₺&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;input type="number" placeholder="Tutar giriniz" value="${data.amount || ''}" oninput="updateData('${pharmacy.gln}', 'amount', this.value)" class="w-full pl-8 pr-3 py-2 text-sm border border-blue-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>` : ''}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                                </span>${isDetailsOpen ? `</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="space-y-2 pt-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;div class="flex gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;button onclick="toggleFollowUp('${pharmacy.gln}', 'later')" class="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 rounded border text-[11px] font-bold transition-colors ${data.followUp === 'later' ? 'bg-orange-100 border-orange-200 text-orange-700' : 'bg-white border-slate-200 text-slate-500'}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;i data-lucide="clock" class="w-3 h-3"&gt;&lt;/i&gt; Sonra Uğra</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;button onclick="toggleFollowUp('${pharmacy.gln}', 'waiting')" class="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 rounded border text-[11px] font-bold transition-colors ${data.followUp === 'waiting' ? 'bg-purple-100 border-purple-200 text-purple-700' : 'bg-white border-slate-200 text-slate-500'}"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                                </span>&lt;i data-lucide="alert-circle" class="w-3 h-3"&gt;&lt;/i&gt; Dönüş Bekleniyor</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;textarea placeholder="Not ekleyin..." oninput="updateData('${pharmacy.gln}', 'note', this.value)" class="w-full p-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 bg-white min-h-[60px]"&gt;${data.note || ''}&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>` : ''}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>`;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>listContainer.appendChild(itemDiv);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>regionHtml.appendChild(listContainer);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>container.appendChild(regionHtml);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lucide.createIcons();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Başlat</p>
+<p class="p1"><span class="Apple-converted-space">        </span>renderApp();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
