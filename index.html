@@ -3,91 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Saha Takip V3</title>
+    <title>Genveon Kampanya</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        body { -webkit-tap-highlight-color: transparent; }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap');
+        
+        body { -webkit-tap-highlight-color: transparent; font-family: 'Inter', sans-serif; }
+        .font-brand { font-family: 'Playfair Display', serif; }
         .transition-height { transition: max-height 0.3s ease-in-out, padding 0.3s ease; }
-        /* İnce ayar scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+        
+        /* Modal Animasyonları */
+        .modal-enter { animation: modalIn 0.3s ease-out forwards; }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans pb-32">
+<body class="bg-slate-50 text-slate-800 pb-40">
 
     <!-- Header -->
-    <div class="bg-white shadow-md sticky top-0 z-50 border-b border-slate-200">
-        <div class="max-w-2xl mx-auto p-4">
-            <div class="flex justify-between items-center mb-2">
+    <div class="bg-white shadow-sm sticky top-0 z-40 border-b border-slate-200">
+        <div class="max-w-2xl mx-auto px-4 py-3">
+            <div class="flex justify-between items-end mb-3">
+                <!-- LOGO ALANI -->
                 <div>
-                    <h1 class="text-xl font-bold text-slate-800 flex items-center gap-2">
-                        <i data-lucide="pie-chart" class="w-6 h-6 text-blue-600"></i>
-                        Saha Takip
+                    <h1 class="font-brand font-black text-2xl tracking-tighter text-black leading-none uppercase">
+                        GENVEON
                     </h1>
-                    <span class="text-xs text-slate-500">Toplam 41 Eczane</span>
+                    <span class="text-[10px] font-sans font-bold tracking-[0.2em] text-slate-500 uppercase ml-0.5">Kampanya Takip</span>
                 </div>
                 
-                <div class="flex flex-col items-end gap-0.5">
-                    <div class="flex items-center gap-1.5 text-green-600 bg-green-50 px-2 py-0.5 rounded-md border border-green-100">
-                        <span class="text-sm font-bold">₺</span>
-                        <span id="total-amount" class="text-lg font-bold tracking-tight">0</span>
+                <div class="flex flex-col items-end gap-1">
+                    <div class="flex items-center gap-1 text-slate-800 bg-slate-100 px-2 py-1 rounded border border-slate-200">
+                        <span class="text-xs font-bold text-slate-500">₺</span>
+                        <span id="total-amount" class="text-sm font-bold tracking-tight">0</span>
                     </div>
-                    <div class="flex items-baseline gap-2 mt-1">
-                        <span id="visit-count" class="text-[10px] text-slate-400 font-medium tracking-wide">0 / 41 Ziyaret</span>
-                        <span id="visit-percentage" class="text-base font-black text-blue-600">%0</span>
+                    <div class="flex items-baseline gap-1">
+                        <span id="visit-count" class="text-[10px] text-slate-400 font-medium">0/0</span>
+                        <span id="visit-percentage" class="text-sm font-black text-black">%0</span>
                     </div>
                 </div>
             </div>
             
             <!-- Progress Bar -->
-            <div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
-                <div id="progress-bar" class="bg-blue-600 h-3 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
+            <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                <div id="progress-bar" class="bg-black h-2 rounded-full transition-all duration-500 ease-out" style="width: 0%"></div>
             </div>
         </div>
     </div>
 
     <!-- Main Content -->
-    <div id="app-container" class="max-w-2xl mx-auto p-4 space-y-4">
-        <!-- Eczane listesi buraya JS ile doldurulacak -->
+    <div id="app-container" class="max-w-2xl mx-auto p-4 space-y-3">
+        <!-- Liste buraya JS ile dolacak -->
     </div>
 
     <!-- Footer Action Bar -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-50">
-        <div class="max-w-2xl mx-auto p-3 flex flex-col gap-2">
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-50">
+        <div class="max-w-2xl mx-auto p-3 space-y-2">
+            
             <!-- Ana Butonlar -->
-            <div class="flex gap-2">
-                <button onclick="copyReport()" class="flex-1 bg-slate-800 text-white py-3 rounded-lg font-bold flex items-center justify-center gap-2 active:bg-slate-900 shadow-md">
-                    <i data-lucide="clipboard-copy" class="w-5 h-5"></i>
-                    Raporu Kopyala
+            <div class="grid grid-cols-4 gap-2">
+                <button onclick="copyReport()" class="col-span-2 bg-black text-white py-3 rounded hover:bg-slate-800 active:scale-[0.98] transition-transform font-bold text-sm flex items-center justify-center gap-2">
+                    <i data-lucide="clipboard-copy" class="w-4 h-4"></i>
+                    Raporla
                 </button>
-                <button onclick="toggleDataMenu()" class="bg-blue-50 text-blue-600 px-4 rounded-lg font-bold border border-blue-100 active:bg-blue-100 flex items-center justify-center">
-                    <i data-lucide="save" class="w-5 h-5"></i>
+                <button onclick="openAddModal()" class="bg-slate-100 text-slate-700 rounded font-bold text-sm flex items-center justify-center gap-1 border border-slate-200 active:bg-slate-200">
+                    <i data-lucide="plus" class="w-4 h-4"></i> Yeni
                 </button>
-                <button onclick="confirmReset()" class="bg-red-50 text-red-600 px-4 rounded-lg font-bold border border-red-100 active:bg-red-100 flex items-center justify-center">
-                    <i data-lucide="trash-2" class="w-5 h-5"></i>
+                <button onclick="toggleDataMenu()" class="bg-slate-100 text-slate-700 rounded font-bold text-sm flex items-center justify-center border border-slate-200 active:bg-slate-200">
+                    <i data-lucide="settings-2" class="w-4 h-4"></i>
                 </button>
             </div>
 
-            <!-- Gizli Veri Menüsü -->
-            <div id="data-menu" class="hidden animate-in slide-in-from-bottom-2 fade-in duration-200 bg-slate-50 rounded-lg p-3 border border-slate-200">
-                <div class="flex gap-2 text-sm">
-                    <button onclick="exportData()" class="flex-1 flex items-center justify-center gap-2 py-2 bg-white border border-slate-300 rounded text-slate-700 font-semibold shadow-sm">
-                        <i data-lucide="download" class="w-4 h-4"></i> Yedek İndir
-                    </button>
-                    <label class="flex-1 flex items-center justify-center gap-2 py-2 bg-white border border-slate-300 rounded text-slate-700 font-semibold shadow-sm cursor-pointer">
-                        <i data-lucide="upload" class="w-4 h-4"></i> Yedek Yükle
-                        <input type="file" id="import-file" class="hidden" accept=".json" onchange="importData(this)">
-                    </label>
+            <!-- Gizli Menü -->
+            <div id="data-menu" class="hidden bg-slate-50 rounded p-2 border border-slate-200 grid grid-cols-3 gap-2 text-xs">
+                <button onclick="exportData()" class="flex flex-col items-center justify-center py-2 bg-white border rounded text-slate-600">
+                    <i data-lucide="download" class="w-4 h-4 mb-1"></i> Yedek Al
+                </button>
+                <label class="flex flex-col items-center justify-center py-2 bg-white border rounded text-slate-600 cursor-pointer">
+                    <i data-lucide="upload" class="w-4 h-4 mb-1"></i> Yükle
+                    <input type="file" id="import-file" class="hidden" accept=".json" onchange="importData(this)">
+                </label>
+                <button onclick="confirmReset()" class="flex flex-col items-center justify-center py-2 bg-red-50 border border-red-100 rounded text-red-600">
+                    <i data-lucide="trash-2" class="w-4 h-4 mb-1"></i> Sıfırla
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EKLEME MODALI -->
+    <div id="add-modal" class="fixed inset-0 bg-black/60 z-[60] hidden flex items-end sm:items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-sm rounded-xl p-5 shadow-2xl modal-enter">
+            <h3 class="font-brand font-bold text-xl mb-4 text-black">Yeni Eczane Ekle</h3>
+            
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1">BÖLGE / BRICK</label>
+                    <input type="text" id="new-region" list="region-list" placeholder="Örn: ORDU MERKEZ -1" class="w-full p-3 border border-slate-300 rounded focus:outline-none focus:border-black font-medium">
+                    <datalist id="region-list">
+                        <!-- JS ile dolacak -->
+                    </datalist>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 mb-1">ECZANE ADI</label>
+                    <input type="text" id="new-name" placeholder="Örn: Yeni Eczane" class="w-full p-3 border border-slate-300 rounded focus:outline-none focus:border-black font-medium">
+                </div>
+
+                <div class="flex gap-2 mt-4 pt-2">
+                    <button onclick="closeAddModal()" class="flex-1 py-3 border border-slate-300 rounded text-slate-600 font-bold">İptal</button>
+                    <button onclick="addNewPharmacy()" class="flex-1 py-3 bg-black text-white rounded font-bold hover:bg-slate-800">Kaydet</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Veri Seti
-        const RAW_DATA = [
+        // Varsayılan Eczane Listesi
+        const INITIAL_DATA = [
             { gln: "8680001156580", name: "FATİH ECZANESİ", region: "ORDU MERKEZ -1" },
             { gln: "8680001203062", name: "ŞİMŞEK ECZANESİ", region: "ORDU MERKEZ -1" },
             { gln: "8680001165636", name: "KAYAHAN ECZANESİ", region: "ORDU MERKEZ -1" },
@@ -131,95 +166,91 @@
             { gln: "8680001157914", name: "GÜRGENTEPE ECZANESİ", region: "ORDU GUNEY ILCELER -1" }
         ];
 
-        // State Yönetimi
-        let trackingData = JSON.parse(localStorage.getItem('eczaneTakipV3')) || {};
+        // 4.12.2025 Tarihli Yüklenen Yedek Verisi
+        const PRELOADED_TRACKING_DATA = {
+            "8680001636570":{"visited":true,"ordered":false,"followUp":"waiting"},
+            "8680001252817":{"visited":true,"ordered":false,"followUp":"waiting"},
+            "8680001490844":{"visited":true,"ordered":false,"followUp":"later"},
+            "8680001277308":{"visited":true,"ordered":false,"followUp":"waiting"},
+            "8680001417810":{"visited":true,"ordered":false},
+            "8680001232352":{"visited":true,"ordered":false},
+            "8680001150144":{"visited":true,"ordered":false,"followUp":"later"},
+            "8680001657612":{"visited":true,"ordered":true,"followUp":"","amount":"666"},
+            "8680001141746":{"visited":true,"ordered":true,"amount":"8364"},
+            "8680001156580":{"visited":true,"ordered":true,"amount":"8711"},
+            "8680001203062":{"visited":true,"ordered":false,"followUp":""},
+            "8680001154135":{"visited":true,"ordered":false},
+            "8680001563258":{"visited":true,"ordered":true,"amount":"2321"},
+            "8680001153336":{"visited":true,"ordered":false},
+            "8680001163564":{"visited":true,"ordered":true,"amount":"27731"},
+            "8680001420681":{"visited":true,"ordered":false,"followUp":"waiting"},
+            "8680001632466":{"visited":true,"ordered":false},
+            "8680001648450":{"visited":true,"ordered":false},
+            "8680001570485":{"visited":true,"ordered":true,"amount":"733","note":"Dalin"},
+            "8680001713677":{"visited":true,"ordered":false,"followUp":"waiting"},
+            "8680001726905":{"visited":true,"ordered":false,"followUp":"later"},
+            "8680001202294":{"visited":true,"ordered":false},
+            "8680001163717":{"visited":true,"ordered":true,"amount":"5845"},
+            "8680001460397":{"visited":true,"ordered":false,"followUp":"waiting"},
+            "8680001233144":{"visited":true,"ordered":false},
+            "8680001709571":{"visited":false,"ordered":false},
+            "8680001753178":{"visited":true,"ordered":true,"amount":"1466"},
+            "8680001277230":{"visited":true,"ordered":false},
+            "8680001389414":{"visited":true,"ordered":false}
+        };
+
+        // State & LocalStorage (Varsayılan olarak yüklenen veriyi kullan)
+        let pharmacyList = JSON.parse(localStorage.getItem('genveon_list_v4_updated')) || INITIAL_DATA;
+        let trackingData = JSON.parse(localStorage.getItem('genveon_track_v4_updated')) || PRELOADED_TRACKING_DATA;
+        
         let expandedRegions = {};
         let expandedDetails = {};
-        let isDataMenuOpen = false;
 
-        // --- VERİ YÖNETİMİ ---
+        // --- CORE FUNCTIONS ---
 
-        function saveOnly() {
-            localStorage.setItem('eczaneTakipV3', JSON.stringify(trackingData));
+        function saveData() {
+            localStorage.setItem('genveon_track_v4_updated', JSON.stringify(trackingData));
+            localStorage.setItem('genveon_list_v4_updated', JSON.stringify(pharmacyList));
         }
 
         function saveAndRender() {
-            saveOnly();
+            saveData();
             renderApp();
         }
 
-        function toggleDataMenu() {
-            const menu = document.getElementById('data-menu');
-            if (menu.classList.contains('hidden')) {
-                menu.classList.remove('hidden');
-            } else {
-                menu.classList.add('hidden');
+        // --- MODAL & EKLEME ---
+
+        function openAddModal() {
+            document.getElementById('add-modal').classList.remove('hidden');
+            const regions = [...new Set(pharmacyList.map(item => item.region))];
+            const dataList = document.getElementById('region-list');
+            dataList.innerHTML = regions.map(r => `<option value="${r}">`).join('');
+        }
+
+        function closeAddModal() {
+            document.getElementById('add-modal').classList.add('hidden');
+            document.getElementById('new-name').value = '';
+            document.getElementById('new-region').value = '';
+        }
+
+        function addNewPharmacy() {
+            const name = document.getElementById('new-name').value;
+            const region = document.getElementById('new-region').value;
+
+            if (!name || !region) {
+                alert("Lütfen bölge ve eczane adı girin.");
+                return;
             }
+
+            const newGln = "USER_" + Date.now();
+            pharmacyList.push({ gln: newGln, name: name.toUpperCase(), region: region.toUpperCase() });
+            saveAndRender();
+            closeAddModal();
+            
+            if(!expandedRegions[region.toUpperCase()]) toggleRegion(region.toUpperCase());
         }
 
-        function exportData() {
-            const dataStr = JSON.stringify(trackingData);
-            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-            const exportFileDefaultName = `Saha_Takip_Yedek_${new Date().toLocaleDateString()}.json`;
-
-            const linkElement = document.createElement('a');
-            linkElement.setAttribute('href', dataUri);
-            linkElement.setAttribute('download', exportFileDefaultName);
-            linkElement.click();
-            toggleDataMenu();
-        }
-
-        function importData(input) {
-            const file = input.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const contents = e.target.result;
-                    const newData = JSON.parse(contents);
-                    
-                    if(confirm("Mevcut verilerin üzerine yedek yüklenecek. Onaylıyor musun?")) {
-                        trackingData = newData;
-                        saveAndRender();
-                        alert("Yedek başarıyla yüklendi!");
-                    }
-                } catch(err) {
-                    alert("Dosya hatalı veya bozuk!");
-                }
-            };
-            reader.readAsText(file);
-            toggleDataMenu();
-            input.value = ''; // Reset input
-        }
-
-        // --- HESAPLAMA & RENDER ---
-
-        function updateHeaderStats() {
-            let visitedCount = 0, orderedCount = 0, totalAmount = 0;
-            Object.values(trackingData).forEach(item => {
-                if (item.visited) visitedCount++;
-                if (item.ordered) {
-                    orderedCount++;
-                    totalAmount += parseFloat(item.amount) || 0;
-                }
-            });
-            const visitPercentage = Math.round((visitedCount / RAW_DATA.length) * 100);
-
-            document.getElementById('total-amount').innerText = totalAmount.toLocaleString('tr-TR');
-            document.getElementById('visit-count').innerText = `${visitedCount} / ${RAW_DATA.length} Ziyaret`;
-            document.getElementById('visit-percentage').innerText = `%${visitPercentage}`;
-            document.getElementById('progress-bar').style.width = `${visitPercentage}%`;
-        }
-
-        function getGroupedData() {
-            const groups = {};
-            RAW_DATA.forEach(item => {
-                if (!groups[item.region]) groups[item.region] = [];
-                groups[item.region].push(item);
-            });
-            return groups;
-        }
+        // --- GÖRÜNÜM & ETKİLEŞİM ---
 
         function toggleRegion(region) {
             expandedRegions[region] = !expandedRegions[region];
@@ -230,11 +261,16 @@
             expandedDetails[gln] = !expandedDetails[gln];
             renderApp();
         }
+        
+        function closeDetails(gln) {
+            expandedDetails[gln] = false;
+            renderApp();
+        }
 
         function handleInput(gln, field, value) {
             if (!trackingData[gln]) trackingData[gln] = {};
             trackingData[gln][field] = value;
-            saveOnly();
+            saveData();
             if (field === 'amount') updateHeaderStats();
         }
 
@@ -253,17 +289,42 @@
             saveAndRender();
         }
 
-        function confirmReset() {
-            if(confirm("Her şeyi silip sıfırdan başlamak istediğine emin misin?")) {
-                localStorage.removeItem('eczaneTakipV3');
-                trackingData = {};
-                location.reload();
-            }
+        // --- İSTATİSTİK & RENDER ---
+
+        function updateHeaderStats() {
+            let visitedCount = 0, orderedCount = 0, totalAmount = 0;
+            Object.values(trackingData).forEach(item => {
+                if (item.visited) visitedCount++;
+                if (item.ordered) {
+                    orderedCount++;
+                    totalAmount += parseFloat(item.amount) || 0;
+                }
+            });
+            const totalCount = pharmacyList.length;
+            const visitPercentage = totalCount === 0 ? 0 : Math.round((visitedCount / totalCount) * 100);
+
+            document.getElementById('total-amount').innerText = totalAmount.toLocaleString('tr-TR');
+            document.getElementById('visit-count').innerText = `${visitedCount}/${totalCount}`;
+            document.getElementById('visit-percentage').innerText = `%${visitPercentage}`;
+            document.getElementById('progress-bar').style.width = `${visitPercentage}%`;
+        }
+
+        function getGroupedData() {
+            const groups = {};
+            pharmacyList.forEach(item => {
+                if (!groups[item.region]) groups[item.region] = [];
+                groups[item.region].push(item);
+            });
+            return groups;
+        }
+
+        function toggleDataMenu() {
+            document.getElementById('data-menu').classList.toggle('hidden');
         }
 
         function copyReport() {
             let visitedCount = 0, orderedCount = 0, totalAmount = 0;
-            const totalCount = RAW_DATA.length;
+            const totalCount = pharmacyList.length;
 
             Object.values(trackingData).forEach(item => {
                 if (item.visited) visitedCount++;
@@ -273,16 +334,16 @@
                 }
             });
 
-            const visitPercentage = Math.round((visitedCount / totalCount) * 100);
+            const visitPercentage = totalCount === 0 ? 0 : Math.round((visitedCount / totalCount) * 100);
 
-            let report = `📅 *Saha Raporu*\n\n`;
-            report += `📈 Ziyaret: %${visitPercentage} (${visitedCount}/${totalCount})\n`;
-            report += `📦 Sipariş: ${orderedCount} Adet\n`;
-            report += `💰 Ciro: ${totalAmount.toLocaleString('tr-TR')} TL\n\n`;
+            let report = `📊 *GENVEON Kampanya Raporu*\n\n`;
+            report += `Ziyaret: %${visitPercentage} (${visitedCount}/${totalCount})\n`;
+            report += `Sipariş: ${orderedCount} Eczane\n`;
+            report += `Tutar: ${totalAmount.toLocaleString('tr-TR')} TL\n\n`;
             
             report += `*Siparişler:*\n`;
             let orderLines = [];
-            RAW_DATA.forEach(item => {
+            pharmacyList.forEach(item => {
                 const data = trackingData[item.gln];
                 if (data?.ordered) {
                     let line = `- ${item.name}`;
@@ -293,25 +354,76 @@
             });
             report += orderLines.length > 0 ? orderLines.join('\n') : "Yok\n";
 
-            report += `\n*Takip / Durumlar:*\n`;
+            report += `\n*Notlar & Takip:*\n`;
             let followUpLines = [];
-            RAW_DATA.forEach(item => {
+            pharmacyList.forEach(item => {
                 const data = trackingData[item.gln];
                 if (!data?.ordered && (data?.followUp || data?.note)) {
                     let line = `- ${item.name}`;
-                    if (data.followUp === 'later') line += ` [Sonra]`;
-                    if (data.followUp === 'waiting') line += ` [Dönüş]`;
+                    if (data.followUp === 'later') line += ` [Sonra Uğra]`;
+                    if (data.followUp === 'waiting') line += ` [Dönüş Bekle]`;
                     if (data.note) line += ` | ${data.note}`;
                     followUpLines.push(line);
                 }
             });
             report += followUpLines.length > 0 ? followUpLines.join('\n') : "Yok\n";
 
-            navigator.clipboard.writeText(report).then(() => {
-                alert("Rapor kopyalandı!");
-            });
+            const el = document.createElement('textarea');
+            el.value = report;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert("Rapor kopyalandı!");
         }
 
+        function exportData() {
+            const dataToExport = { list: pharmacyList, track: trackingData };
+            const dataStr = JSON.stringify(dataToExport);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', `Genveon_Yedek_${new Date().toLocaleDateString()}.json`);
+            linkElement.click();
+            toggleDataMenu();
+        }
+
+        function importData(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const parsed = JSON.parse(e.target.result);
+                    if(parsed.list && parsed.track) {
+                        pharmacyList = parsed.list;
+                        trackingData = parsed.track;
+                        saveAndRender();
+                        alert("Yedek yüklendi!");
+                    } else if (parsed["8680001636570"]) { 
+                        // Eski format (Sadece tracking data ise)
+                         trackingData = parsed;
+                         saveAndRender();
+                         alert("Yedek (Eski Format) yüklendi!");
+                    } else {
+                        alert("Eski versiyon veya hatalı dosya.");
+                    }
+                } catch(err) { alert("Dosya okunamadı."); }
+            };
+            reader.readAsText(file);
+            toggleDataMenu();
+        }
+
+        function confirmReset() {
+            if(confirm("Tüm liste ve veriler silinecek! Varsayılan listeye dönülecek.")) {
+                localStorage.removeItem('genveon_list_v4_updated');
+                localStorage.removeItem('genveon_track_v4_updated');
+                location.reload();
+            }
+        }
+
+        // --- RENDER ---
+        
         function renderApp() {
             const container = document.getElementById('app-container');
             const groupedData = getGroupedData();
@@ -319,12 +431,14 @@
             updateHeaderStats();
 
             container.innerHTML = '';
+            const sortedRegions = Object.keys(groupedData).sort();
 
-            for (const [region, items] of Object.entries(groupedData)) {
-                // --- BÖLGE İSTATİSTİKLERİ HESAPLAMA ---
+            for (const region of sortedRegions) {
+                const items = groupedData[region];
+                
                 let regionVisited = 0;
                 let regionOrdered = 0;
-                let regionFollowUp = 0; // Dönüş beklenen veya Sonra uğranacak
+                let regionFollowUp = 0;
                 
                 items.forEach(i => { 
                     const d = trackingData[i.gln];
@@ -334,37 +448,57 @@
                 });
 
                 const isAllVisited = regionVisited === items.length && items.length > 0;
+                
+                // Stil Mantığı
+                let headerBg = "bg-orange-50";
+                let headerBorder = "border-orange-100";
+                let titleColor = "text-orange-900";
+                let barColor = "bg-orange-500";
+                
+                if (regionVisited === 0) {
+                    headerBg = "bg-white";
+                    headerBorder = "border-slate-200";
+                    titleColor = "text-slate-800";
+                    barColor = "bg-slate-400";
+                }
+
+                if (isAllVisited) {
+                    headerBg = "bg-green-50";
+                    headerBorder = "border-green-100";
+                    titleColor = "text-green-800";
+                    barColor = "bg-green-600";
+                }
+
                 const isOpen = expandedRegions[region];
                 
-                // Bölge Başlık HTML (ÖZET GÖRÜNÜM EKLENDİ)
                 const regionHtml = document.createElement('div');
-                regionHtml.className = "bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden";
+                regionHtml.className = `rounded-lg shadow-sm border overflow-hidden ${headerBg} ${headerBorder}`;
                 
                 let summaryBadges = '';
                 if (regionOrdered > 0) summaryBadges += `<span class="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1"><i data-lucide="shopping-cart" class="w-3 h-3"></i> ${regionOrdered}</span>`;
                 if (regionFollowUp > 0) summaryBadges += `<span class="bg-purple-100 text-purple-700 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1"><i data-lucide="clock" class="w-3 h-3"></i> ${regionFollowUp}</span>`;
                 
                 regionHtml.innerHTML = `
-                    <button onclick="toggleRegion('${region}')" class="w-full flex justify-between items-center p-4 transition-colors ${isAllVisited ? 'bg-green-50' : 'bg-white hover:bg-slate-50'}">
+                    <button onclick="toggleRegion('${region}')" class="w-full flex justify-between items-center p-4 transition-colors hover:opacity-90">
                         <div class="text-left w-full pr-2">
                             <div class="flex justify-between items-start">
-                                <h3 class="font-bold ${isAllVisited ? 'text-green-700' : 'text-slate-800'}">${region}</h3>
+                                <h3 class="font-bold ${titleColor} text-sm uppercase tracking-wide">${region}</h3>
                                 <div class="flex gap-1">${summaryBadges}</div>
                             </div>
-                            <div class="flex items-center gap-2 mt-1">
-                                <div class="w-full bg-slate-100 rounded-full h-1.5 max-w-[100px]">
-                                    <div class="bg-green-500 h-1.5 rounded-full" style="width: ${(regionVisited/items.length)*100}%"></div>
+                            <div class="flex items-center gap-2 mt-2">
+                                <div class="w-full bg-white/60 rounded-full h-1.5 max-w-[100px] border border-white/20">
+                                    <div class="${barColor} h-1.5 rounded-full" style="width: ${(regionVisited/items.length)*100}%"></div>
                                 </div>
-                                <p class="text-[10px] text-slate-500 font-medium whitespace-nowrap">${regionVisited}/${items.length} Ziyaret</p>
+                                <p class="text-[10px] ${titleColor} opacity-70 font-medium whitespace-nowrap">${regionVisited}/${items.length} Ziyaret</p>
                             </div>
                         </div>
-                        <i data-lucide="${isOpen ? 'chevron-up' : 'chevron-down'}" class="text-slate-400 w-5 h-5 shrink-0"></i>
+                        <i data-lucide="${isOpen ? 'chevron-up' : 'chevron-down'}" class="${titleColor} opacity-50 w-5 h-5 shrink-0"></i>
                     </button>
                 `;
 
                 if (isOpen) {
                     const listContainer = document.createElement('div');
-                    listContainer.className = "divide-y divide-slate-100 bg-slate-50/50";
+                    listContainer.className = "divide-y divide-slate-100 bg-white border-t border-slate-100";
 
                     items.forEach(pharmacy => {
                         const data = trackingData[pharmacy.gln] || {};
@@ -378,35 +512,32 @@
 
                         let amountDisplay = '';
                         if (data.ordered && data.amount && !isDetailsOpen) {
-                            amountDisplay = `<div class="mt-1 text-xs font-bold text-green-600">₺${parseFloat(data.amount).toLocaleString('tr-TR')}</div>`;
+                            amountDisplay = `<div class="mt-0.5 text-xs font-bold text-green-700">₺${parseFloat(data.amount).toLocaleString('tr-TR')}</div>`;
                         }
 
                         const itemDiv = document.createElement('div');
                         itemDiv.className = "flex flex-col";
                         itemDiv.innerHTML = `
-                            <div class="p-3 flex items-start justify-between gap-3 bg-white">
-                                <div class="flex-1 min-w-0 pt-1">
+                            <div class="p-3 flex items-center justify-between gap-3">
+                                <div class="flex-1 min-w-0">
                                     <div class="flex items-center flex-wrap">
-                                        <div class="font-semibold truncate ${data.visited ? 'text-slate-600' : 'text-slate-900'}">${pharmacy.name}</div>
+                                        <div class="font-bold text-sm truncate ${data.visited ? 'text-slate-500 line-through decoration-slate-300' : 'text-slate-900'}">${pharmacy.name}</div>
                                         ${badges}
                                     </div>
-                                    <div class="text-[10px] text-slate-400 font-mono">GLN: ${pharmacy.gln}</div>
                                     ${amountDisplay}
                                 </div>
                                 
                                 <div class="flex gap-2 shrink-0">
-                                    <button onclick="toggleStatus('${pharmacy.gln}', 'visited')" class="flex flex-col items-center justify-center w-11 h-11 rounded-lg border transition-all active:scale-95 ${data.visited ? 'bg-green-100 border-green-200 text-green-700 shadow-inner' : 'bg-white border-slate-200 text-slate-400 shadow-sm'}">
-                                        <i data-lucide="check-circle-2" class="w-5 h-5 mb-0.5"></i>
-                                        <span class="text-[8px] font-bold">GİTTİM</span>
+                                    <button onclick="toggleStatus('${pharmacy.gln}', 'visited')" class="flex flex-col items-center justify-center w-10 h-10 rounded border transition-all active:scale-95 ${data.visited ? 'bg-green-600 border-green-600 text-white shadow-md' : 'bg-white border-slate-200 text-slate-300'}">
+                                        <i data-lucide="check" class="w-5 h-5"></i>
                                     </button>
                                     
-                                    <button onclick="toggleStatus('${pharmacy.gln}', 'ordered')" class="flex flex-col items-center justify-center w-11 h-11 rounded-lg border transition-all active:scale-95 ${data.ordered ? 'bg-blue-100 border-blue-200 text-blue-700 shadow-inner' : 'bg-white border-slate-200 text-slate-400 shadow-sm'}">
-                                        <i data-lucide="shopping-cart" class="w-4 h-4 mb-0.5"></i>
-                                        <span class="text-[8px] font-bold">SİP.</span>
+                                    <button onclick="toggleStatus('${pharmacy.gln}', 'ordered')" class="flex flex-col items-center justify-center w-10 h-10 rounded border transition-all active:scale-95 ${data.ordered ? 'bg-blue-600 border-blue-600 text-white shadow-md' : 'bg-white border-slate-200 text-slate-300'}">
+                                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
                                     </button>
 
-                                    <button onclick="toggleDetails('${pharmacy.gln}')" class="flex flex-col items-center justify-center w-8 h-11 rounded-lg border transition-all active:scale-95 ${isDetailsOpen || data.note || data.followUp ? 'bg-slate-100 border-slate-300 text-slate-700' : 'bg-white border-slate-200 text-slate-400'}">
-                                        <i data-lucide="file-text" class="w-4 h-4"></i>
+                                    <button onclick="toggleDetails('${pharmacy.gln}')" class="flex flex-col items-center justify-center w-8 h-10 rounded border transition-all active:scale-95 ${isDetailsOpen || data.note || data.followUp ? 'bg-slate-100 border-slate-300 text-slate-600' : 'bg-white border-slate-200 text-slate-300'}">
+                                        <i data-lucide="chevron-down" class="w-4 h-4 transition-transform ${isDetailsOpen ? 'rotate-180' : ''}"></i>
                                     </button>
                                 </div>
                             </div>
@@ -416,7 +547,7 @@
                                     <div class="pt-2">
                                         <div class="relative">
                                             <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 font-bold text-sm">₺</span>
-                                            <input type="number" placeholder="Tutar giriniz" value="${data.amount || ''}" oninput="handleInput('${pharmacy.gln}', 'amount', this.value)" class="w-full pl-8 pr-3 py-2 text-sm border border-blue-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white shadow-sm">
+                                            <input type="number" placeholder="Tutar" value="${data.amount || ''}" oninput="handleInput('${pharmacy.gln}', 'amount', this.value)" class="w-full pl-8 pr-3 py-2 text-sm border border-slate-300 rounded focus:outline-none focus:border-black bg-white">
                                         </div>
                                     </div>
                                 ` : ''}
@@ -424,14 +555,18 @@
                                 ${isDetailsOpen ? `
                                     <div class="space-y-2 pt-2">
                                         <div class="flex gap-2">
-                                            <button onclick="toggleFollowUp('${pharmacy.gln}', 'later')" class="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 rounded border text-[11px] font-bold transition-colors ${data.followUp === 'later' ? 'bg-orange-100 border-orange-200 text-orange-700' : 'bg-white border-slate-200 text-slate-500'}">
-                                                <i data-lucide="clock" class="w-3 h-3"></i> Sonra Uğra
+                                            <button onclick="toggleFollowUp('${pharmacy.gln}', 'later')" class="flex-1 flex items-center justify-center gap-1 py-2 px-2 rounded border text-[10px] font-bold transition-colors ${data.followUp === 'later' ? 'bg-orange-100 border-orange-200 text-orange-700' : 'bg-white border-slate-200 text-slate-500'}">
+                                                <i data-lucide="clock" class="w-3 h-3"></i> SONRA UĞRA
                                             </button>
-                                            <button onclick="toggleFollowUp('${pharmacy.gln}', 'waiting')" class="flex-1 flex items-center justify-center gap-1 py-1.5 px-2 rounded border text-[11px] font-bold transition-colors ${data.followUp === 'waiting' ? 'bg-purple-100 border-purple-200 text-purple-700' : 'bg-white border-slate-200 text-slate-500'}">
-                                                <i data-lucide="alert-circle" class="w-3 h-3"></i> Dönüş Bekleniyor
+                                            <button onclick="toggleFollowUp('${pharmacy.gln}', 'waiting')" class="flex-1 flex items-center justify-center gap-1 py-2 px-2 rounded border text-[10px] font-bold transition-colors ${data.followUp === 'waiting' ? 'bg-purple-100 border-purple-200 text-purple-700' : 'bg-white border-slate-200 text-slate-500'}">
+                                                <i data-lucide="alert-circle" class="w-3 h-3"></i> DÖNÜŞ BEKLENİYOR
                                             </button>
                                         </div>
-                                        <textarea placeholder="Not ekleyin..." oninput="handleInput('${pharmacy.gln}', 'note', this.value)" class="w-full p-2 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 bg-white min-h-[60px]">${data.note || ''}</textarea>
+                                        <textarea placeholder="Not..." oninput="handleInput('${pharmacy.gln}', 'note', this.value)" class="w-full p-2 text-sm border border-slate-300 rounded focus:outline-none focus:border-black bg-white min-h-[60px]">${data.note || ''}</textarea>
+                                        
+                                        <button onclick="closeDetails('${pharmacy.gln}')" class="w-full py-2 bg-slate-200 text-slate-600 text-xs font-bold rounded flex items-center justify-center gap-1 hover:bg-slate-300">
+                                            <i data-lucide="chevron-up" class="w-3 h-3"></i> Detayı Kapat
+                                        </button>
                                     </div>
                                 ` : ''}
                             </div>
