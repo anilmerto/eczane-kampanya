@@ -142,7 +142,7 @@
         // HEDEF CİRO (TL)
         const TARGET_CIRO = 482100;
 
-        // Geçici Önizleme Verisi (Tamamını CSV'den yükleyeceksin)
+        // Mayıs kampanya listesi
         const INITIAL_DATA = [
             { gln: "8680001150410", name: "ÖZLEM ECZANESİ", region: "ORDU UNYE" },
             { gln: "8680001428236", name: "NUR ECZANESİ", region: "ORDU GUNEY ILCELER -1" },
@@ -154,6 +154,9 @@
             { gln: "8680001156443", name: "ESRA ECZANESİ", region: "ORDU FATSA" },
             { gln: "8680001570485", name: "FIRAT ECZANESİ", region: "ORDU MERKEZ -3" },
             { gln: "8680001202294", name: "ŞAHİN ECZANESİ", region: "ORDU DOGU ILCELER" },
+            { gln: "8680001524136", name: "DEMİR ECZANESİ", region: "ORDU MERKEZ -1" },
+            { gln: "8680001636570", name: "ÇÖREK OTU ECZANESİ", region: "ORDU FATSA" },
+            { gln: "8680001151080", name: "DERMAN ECZANESİ", region: "ORDU MERKEZ -1" },
             { gln: "8680001141746", name: "ALTAŞ ECZANESİ", region: "ORDU MERKEZ -3" },
             { gln: "8680001494163", name: "ZEYNEP ECZANESİ", region: "ORDU MERKEZ -3" },
             { gln: "8680001213276", name: "MESUDİYE ECZANESİ", region: "ORDU DOGU ILCELER" },
@@ -163,12 +166,27 @@
             { gln: "8680001233144", name: "ULUBEY ECZANESİ", region: "ORDU DOGU ILCELER" },
             { gln: "8680001202218", name: "ŞAFAK ECZANESİ", region: "ORDU DOGU ILCELER" },
             { gln: "8680001420117", name: "TEKİN ECZANESİ", region: "ORDU UNYE" },
-            { gln: "8680001252817", name: "AKAR ECZANESİ", region: "ORDU FATSA" }
+            { gln: "8680001252817", name: "AKAR ECZANESİ", region: "ORDU FATSA" },
+            { gln: "8680001490844", name: "FATSA ECZANESİ", region: "ORDU FATSA" },
+            { gln: "8680001679751", name: "DERMAN ECZANESI", region: "ORDU FATSA" },
+            { gln: "8680001725984", name: "YENİ SANAYİ ECZANESİ", region: "ORDU MERKEZ -3" },
+            { gln: "8680001512225", name: "BAHÇELİEVLER ECZANESİ", region: "ORDU MERKEZ -1" },
+            { gln: "8680001660902", name: "HAYAT ECZANESİ", region: "ORDU FATSA" },
+            { gln: "8680001389414", name: "BESTE ECZANESİ", region: "ORDU FATSA" },
+            { gln: "8680001277308", name: "NOKTA ECZANESİ", region: "ORDU FATSA" },
+            { gln: "8680001428854", name: "ÇAĞLA ECZANESİ", region: "ORDU DOGU ILCELER" },
+            { gln: "8680001709571", name: "LOTUS ECZANESİ", region: "ORDU DOGU ILCELER" },
+            { gln: "8680001686193", name: "CUMHURİYET ECZANESİ", region: "ORDU MERKEZ -3" },
+            { gln: "8680001753178", name: "LOTUS ECZANESİ", region: "ORDU DOGU ILCELER" },
+            { gln: "8680001450343", name: "TUBA ECZANESİ", region: "ORDU MERKEZ -3" },
+            { gln: "8680001730186", name: "ÖYKÜ ECZANESİ", region: "ORDU MERKEZ -3" }
         ];
 
-        // State & LocalStorage (Eski verilerle çakışmaması için anahtarlar v6 yapıldı)
-        let pharmacyList = JSON.parse(localStorage.getItem('genveon_list_v6')) || INITIAL_DATA;
-        let trackingData = JSON.parse(localStorage.getItem('genveon_track_v6')) || {};
+        // State & LocalStorage
+        const LIST_STORAGE_KEY = 'genveon_list_v7';
+        const TRACK_STORAGE_KEY = 'genveon_track_v6';
+        let pharmacyList = JSON.parse(localStorage.getItem(LIST_STORAGE_KEY)) || INITIAL_DATA;
+        let trackingData = JSON.parse(localStorage.getItem(TRACK_STORAGE_KEY)) || {};
         
         let expandedRegions = {};
         let expandedDetails = {};
@@ -176,8 +194,8 @@
         // --- CORE FUNCTIONS ---
 
         function saveData() {
-            localStorage.setItem('genveon_track_v6', JSON.stringify(trackingData));
-            localStorage.setItem('genveon_list_v6', JSON.stringify(pharmacyList));
+            localStorage.setItem(TRACK_STORAGE_KEY, JSON.stringify(trackingData));
+            localStorage.setItem(LIST_STORAGE_KEY, JSON.stringify(pharmacyList));
         }
 
         function saveAndRender() {
@@ -454,8 +472,8 @@
 
         function confirmReset() {
             if(confirm("Tüm liste ve veriler silinecek! Varsayılan listeye dönülecek.")) {
-                localStorage.removeItem('genveon_list_v6');
-                localStorage.removeItem('genveon_track_v6');
+                localStorage.removeItem(LIST_STORAGE_KEY);
+                localStorage.removeItem(TRACK_STORAGE_KEY);
                 location.reload();
             }
         }
